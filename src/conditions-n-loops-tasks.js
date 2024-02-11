@@ -21,8 +21,8 @@
  *  0  => true
  *  -5 => false
  */
-function isPositive(/* number */) {
-  throw new Error('Not implemented');
+function isPositive(number) {
+  return number >= 0;
 }
 
 /**
@@ -38,8 +38,14 @@ function isPositive(/* number */) {
  *  -5, 0, 5      => 5
  *  -0.1, 0, 0.2  => 0.2
  */
-function getMaxNumber(/* a, b, c */) {
-  throw new Error('Not implemented');
+function getMaxNumber(a, b, c) {
+  if (a > b && a > c) {
+    return a;
+  }
+  if (b > c && b > a) {
+    return b;
+  }
+  return c;
 }
 
 /**
@@ -100,8 +106,12 @@ function isIsoscelesTriangle(/* a, b, c */) {
  *  10  => X
  *  26  => XXVI
  */
-function convertToRomanNumerals(/* num */) {
-  throw new Error('Not implemented');
+function convertToRomanNumerals(num) {
+  const digs = ['', 'I', 'II', 'III', 'IV', 'V', 'VI', 'VII', 'VIII', 'IX'];
+  const decs = ['', 'X', 'XX', 'XXX'];
+  const dec = Number.parseInt(num / 10, 10);
+  const dig = num % 10;
+  return `${decs[dec]}${digs[dig]}`;
 }
 
 /**
@@ -119,8 +129,77 @@ function convertToRomanNumerals(/* num */) {
  *  '10,5'    => 'one zero point five'
  *  '1950.2'  => 'one nine five zero point two'
  */
-function convertNumberToString(/* numberStr */) {
-  throw new Error('Not implemented');
+function convertNumberToString(numberStr) {
+  let str = '';
+  let total = '';
+  let digit;
+  for (let i = 0; i < numberStr.length; i += 1) {
+    digit = numberStr[i];
+    switch (digit) {
+      case '-': {
+        str = 'minus';
+        break;
+      }
+      case ',': {
+        str = 'point';
+        break;
+      }
+      case '.': {
+        str = 'point';
+        break;
+      }
+      case '0': {
+        str = 'zero';
+        break;
+      }
+      case '1': {
+        str = 'one';
+        break;
+      }
+      case '2': {
+        str = 'two';
+        break;
+      }
+      case '3': {
+        str = 'three';
+        break;
+      }
+      case '4': {
+        str = 'four';
+        break;
+      }
+      case '5': {
+        str = 'five';
+        break;
+      }
+      case '6': {
+        str = 'six';
+        break;
+      }
+      case '7': {
+        str = 'seven';
+        break;
+      }
+      case '8': {
+        str = 'eight';
+        break;
+      }
+      case '9': {
+        str = 'nine';
+        break;
+      }
+      default: {
+        str = '';
+        break;
+      }
+    }
+    if (total.length > 0) {
+      total += ` ${str}`;
+    } else {
+      total += str;
+    }
+  }
+  return total;
 }
 
 /**
